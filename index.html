@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>VozLibras – Transcrição Acessível</title>
+</head>
+<body>
+
+  <header>
+    <h1>🤟 VozLibras</h1>
+    <p class="subtitle">Transcrição de voz com tradução para Libras</p>
+  </header>
+
+  <main>
+
+    <!-- Controles de gravação -->
+    <section class="card" aria-label="Controles de gravação">
+      <div class="controls">
+        <button id="start" aria-label="Iniciar gravação">
+          <span class="btn-icon">🎙️</span> Iniciar
+        </button>
+        <button id="stop" disabled aria-label="Parar gravação">
+          <span class="btn-icon">⏹️</span> Parar
+        </button>
+        <button id="clearHistory" class="btn-secondary" aria-label="Limpar histórico">
+          <span class="btn-icon">🗑️</span> Limpar
+        </button>
+        <button id="exportHistory" class="btn-secondary" aria-label="Exportar histórico">
+          <span class="btn-icon">📄</span> Exportar
+        </button>
+      </div>
+      <div id="status" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- Sessão atual com botão Libras -->
+    <section class="card highlight-card" aria-label="Texto da sessão atual">
+      <div class="card-header">
+        <strong>📝 Sessão Atual</strong>
+        <button id="librasAtual" class="btn-libras" aria-label="Traduzir sessão atual para Libras" title="Traduzir para Libras">
+          🤟 Traduzir para Libras
+        </button>
+      </div>
+      <!-- Área visível para o usuário -->
+      <div id="sessaoAtual" aria-live="polite" aria-label="Texto transcrito em tempo real"></div>
+
+      <!--
+        PAINEL VLIBRAS:
+        O VLibras lê o texto de elementos visíveis na página.
+        Este painel é preenchido dinamicamente quando o usuário clica
+        "Traduzir para Libras" e o widget então consegue capturá-lo.
+      -->
+      <div id="vlibras-panel" class="vlibras-panel" aria-label="Texto para tradução em Libras" lang="pt-BR">
+        <p id="vlibras-texto"></p>
+      </div>
+      <div id="libras-instrucao" class="libras-instrucao" style="display:none">
+        ✅ Texto enviado! Clique no botão <strong>▶</strong> do widget VLibras (canto inferior direito) para ver a tradução em Libras.
+      </div>
+    </section>
+
+    <!-- Histórico -->
+    <section class="card" aria-label="Histórico de sessões">
+      <div class="card-header">
+        <strong>📂 Histórico de Sessões</strong>
+      </div>
+      <div id="historico" aria-label="Histórico de transcrições"></div>
+    </section>
+
+  </main>
+
+  <!-- Widget VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
