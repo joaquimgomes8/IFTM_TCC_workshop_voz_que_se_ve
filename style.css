@@ -54,10 +54,23 @@ h1 {
 /* ─── Main layout ───────────────────────────────────────────────────────── */
 main {
   width: 100%;
-  max-width: 680px;
-  display: flex;
-  flex-direction: column;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 220px 1fr;
   gap: 20px;
+  align-items: start;
+}
+
+/* Controles à esquerda (coluna fixa), textos à direita (coluna larga) */
+main > section:first-child {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  position: sticky;
+  top: 16px;
+}
+main > section:nth-child(2),
+main > section:nth-child(3) {
+  grid-column: 2;
 }
 
 /* ─── Cards ─────────────────────────────────────────────────────────────── */
@@ -91,9 +104,14 @@ main {
 /* ─── Botões principais ──────────────────────────────────────────────────── */
 .controls {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 10px;
   margin-bottom: 14px;
+}
+
+.controls button {
+  width: 100%;
+  justify-content: flex-start;
 }
 
 button {
@@ -306,4 +324,20 @@ button[disabled] {
   #sessaoAtual { font-size: 1.1rem; }
 
   .card-header { flex-direction: column; align-items: flex-start; }
+}
+
+/* Tablet/celular: volta para uma coluna, botões em linha no topo */
+@media (max-width: 760px) {
+  main { grid-template-columns: 1fr; }
+
+  main > section:first-child,
+  main > section:nth-child(2),
+  main > section:nth-child(3) {
+    grid-column: 1;
+    grid-row: auto;
+    position: static;
+  }
+
+  .controls { flex-direction: row; flex-wrap: wrap; }
+  .controls button { width: auto; }
 }

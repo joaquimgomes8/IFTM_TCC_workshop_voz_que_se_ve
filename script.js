@@ -94,14 +94,6 @@
     renderHistory(sessions);
   };
 
-  // ─── Integração VLibras ────────────────────────────────────────────────────
-  /*
-   * O VLibras monitora o DOM e traduz texto de elementos visíveis.
-   * A estratégia é:
-   *   1. Exibir o painel #vlibras-panel com o texto desejado.
-   *   2. Disparar o widget programaticamente para que ele leia esse texto.
-   *   3. Esconder o painel após alguns segundos (opcional).
-   */
   function enviarParaVLibras(texto) {
     if (!texto || !texto.trim()) {
       alert('Não há texto para traduzir.');
